@@ -54,6 +54,17 @@ public class StudentsMarksStats
         
         // Display assignment name
         System.out.println("\nAssignment: " + assignmentName);
+        
+        // Print all marks
+        System.out.println("Marks: ");
+        
+        for (int i = 0; i < marks.length; i++) {
+            System.out.printf("Student %d : %.2f", i+1, marks[i]);
+            if (i < marks.length - 1) {
+                System.out.print("\n");
+            }
+        }
+     
     }
 
 
