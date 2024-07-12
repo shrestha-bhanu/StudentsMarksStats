@@ -64,6 +64,24 @@ public class StudentsMarksStats
                 System.out.print("\n");
             }
         }
+        
+        // Find and show the highest mark
+        double highestMark = marks[0];
+        for (int i = 1; i < marks.length; i++) {
+            if (marks[i] > highestMark) {
+                highestMark = marks[i];
+            }
+        }
+        System.out.printf("\nHighest mark: %.2f%n", highestMark);
+        
+        // Find and show the lowest mark
+        double lowestMark = marks[0];
+        for (int i = 1; i < marks.length; i++) {
+            if (marks[i] < lowestMark) {
+                lowestMark = marks[i];
+            }
+        }
+        System.out.printf("\nLowest mark: %.2f%n", lowestMark);
      
     }
 
