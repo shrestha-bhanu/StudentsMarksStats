@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class StudentsMarksStats
 {
     // defining total number of students
-    private static int num_students = 2;
+    private static int num_students = 30;
 
       /**
      * An example of a method - replace this comment with your own
@@ -82,6 +82,26 @@ public class StudentsMarksStats
             }
         }
         System.out.printf("\nLowest mark: %.2f%n", lowestMark);
+        
+         // Calculate and display average mark
+        double sum = 0;
+        for (double mark : marks) {
+            sum += mark;
+        }
+        double mean = sum / marks.length;
+        
+        // Calculate standard deviation
+        double squaredDiffSum = 0;
+        for (double mark : marks) {
+            double diff = mark - mean;
+            squaredDiffSum += diff * diff;
+        }
+        double variance = squaredDiffSum / marks.length;
+        double stdDev = Math.sqrt(variance);
+        
+        // Display mean and standard deviation
+        System.out.printf("Mean: %.2f%n", mean);
+        System.out.printf("Standard Deviation: %.2f%n", stdDev);
      
     }
 
