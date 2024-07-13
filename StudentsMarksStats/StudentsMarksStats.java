@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class StudentsMarksStats
 {
     // defining total number of students
-    private static int num_students = 30;
+    private static int num_students = 3;
 
       /**
      * An example of a method - replace this comment with your own
@@ -20,6 +20,7 @@ public class StudentsMarksStats
      */
     public static void main(String[] args) {
     
+        
         // Get assignment name from user and store it.
         System.out.println("Enter the assignment name");
         String assignmentName = new Scanner(System.in).nextLine();
@@ -27,8 +28,21 @@ public class StudentsMarksStats
         // Initialize an array to store marks of all students
         double[] marks = new double[num_students];
         
+        
         // Input marks for each student
-        System.out.println("Enter mark(0-30)");
+        System.out.println("Enter mark. A valid mark is between 0 - 30.");
+        // iterate over 30 students and assign valid mark to each student.
+        for (int i = 0; i < num_students; i++) {
+            System.out.println("Student " + (i + 1) + ":");
+            marks[i] = getStudentMark();
+        }
+
+        System.out.println("\nAssignment: " + assignmentName + "\n");
+        System.out.print("Marks of all 30 students : \n");
+        printAllMarks(marks);
+
+        
+        /*
         for (int i = 0; i < num_students; i++) {
             System.out.println("Student " + (i + 1) + ":");
             
@@ -102,8 +116,36 @@ public class StudentsMarksStats
         // Display mean and standard deviation
         System.out.printf("Mean: %.2f%n", mean);
         System.out.printf("Standard Deviation: %.2f%n", stdDev);
-     
+        
+        */
     }
-
+    
+    private static double getStudentMark() {
+        while (true) {
+            try {
+                double mark = Double.parseDouble(new Scanner(System.in).nextLine());
+                
+                // only accept mark between 0 and 30
+                if (mark >= 0 && mark <= 30) {
+                    return mark;
+                } else {
+                    System.out.println("Error: You entered an invalid mark. Mark must be between 0 and 30. Please try again.");
+                }
+            // when invalid input is given, show error.
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Invalid input. Please enter a number between 0 - 30.");
+            }
+        }
+    }
+    
+    private static void printAllMarks(double[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.printf("%.2f", array[i]);
+            if (i < array.length - 1) {
+                System.out.print("\n");
+            }
+        }
+    }
+    
 
 }
