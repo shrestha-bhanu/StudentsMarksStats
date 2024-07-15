@@ -10,14 +10,14 @@ import java.util.Scanner;
 public class StudentsMarksStats
 {
     // defining total number of students
-    private static int num_students = 3;
+    private static int num_students = 30;
 
-      /**
-     * An example of a method - replace this comment with your own
+    /**
+     * The main method of the class, this method gets input from the user for 30 students' marks and calucates -
+     * highest mark, lowest mark, mean, and standard deviation of the marks.
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+     * @param  args
+    */
     public static void main(String[] args) {
     
         
@@ -39,92 +39,23 @@ public class StudentsMarksStats
 
         System.out.println("\nAssignment: " + assignmentName + "\n");
         System.out.print("Marks of all 30 students : \n");
-        printAllMarks(marks);
+        printAllMarks(marks); // pass the marks array to a method to show the marks to the user.
         
         // Pass the marks array to respective methods to get highest & lowest mark.
         System.out.printf("\n\nHighest mark: %.2f%n", findHighestMark(marks));
         System.out.printf("\nLowest mark: %.2f%n", findLowestMark(marks));
 
-
-        
-        /*
-        for (int i = 0; i < num_students; i++) {
-            System.out.println("Student " + (i + 1) + ":");
-            
-            // Loop until a valid mark is provided
-            while (true) {
-                try {
-                    // Parse user input as a decimal
-                    double mark = Double.parseDouble(new Scanner(System.in).nextLine());
-                    
-                    // Validate if the mark is within the range (0-30)
-                    if (mark >= 0 && mark <= 30) {
-                        marks[i] = mark;
-                        break;  // Exit the whileloop if valid mark is entered
-                    } else {
-                        System.out.println("Error: Mark must be between 0 and 30. Please try again."); // Display error if entered mark is not within the range.
-                    }
-                } catch (NumberFormatException e) {
-                    // catch error when input is not a valid number
-                    System.out.println("Error: Invalid input. Please enter a number.");
-                }
-            }
-        }
-        
-        // Display assignment name
-        System.out.println("\nAssignment: " + assignmentName);
-        
-        // Print all marks
-        System.out.println("Marks: ");
-        
-        for (int i = 0; i < marks.length; i++) {
-            System.out.printf("Student %d : %.2f", i+1, marks[i]);
-            if (i < marks.length - 1) {
-                System.out.print("\n");
-            }
-        }
-        
-        // Find and show the highest mark
-        double highestMark = marks[0];
-        for (int i = 1; i < marks.length; i++) {
-            if (marks[i] > highestMark) {
-                highestMark = marks[i];
-            }
-        }
-        System.out.printf("\nHighest mark: %.2f%n", highestMark);
-        
-        // Find and show the lowest mark
-        double lowestMark = marks[0];
-        for (int i = 1; i < marks.length; i++) {
-            if (marks[i] < lowestMark) {
-                lowestMark = marks[i];
-            }
-        }
-        System.out.printf("\nLowest mark: %.2f%n", lowestMark);
-        
-         // Calculate and display average mark
-        double sum = 0;
-        for (double mark : marks) {
-            sum += mark;
-        }
-        double mean = sum / marks.length;
-        
-        // Calculate standard deviation
-        double squaredDiffSum = 0;
-        for (double mark : marks) {
-            double diff = mark - mean;
-            squaredDiffSum += diff * diff;
-        }
-        double variance = squaredDiffSum / marks.length;
-        double stdDev = Math.sqrt(variance);
-        
-        // Display mean and standard deviation
-        System.out.printf("Mean: %.2f%n", mean);
-        System.out.printf("Standard Deviation: %.2f%n", stdDev);
-        
-        */
+        // Pass the marks array to the method to calculate mean, & standard deviation and store them in an array.
+        double[] meanStdDev = calculateMeanStdDev(marks);
+        System.out.printf("Mean: %.2f%n", meanStdDev[0]);
+        System.out.printf("Standard Deviation: %.2f%n", meanStdDev[1]);
     }
     
+    /**
+     * This method prompts the user for input, validates the input, and returns the input.
+     *
+     * @return    the mark entered by the user.
+    */
     private static double getStudentMark() {
         while (true) {
             try {
@@ -143,16 +74,27 @@ public class StudentsMarksStats
         }
     }
     
-    private static void printAllMarks(double[] array) {
-        for (int i = 0; i < array.length; i++) {
-            System.out.printf("%.2f", array[i]);
-            if (i < array.length - 1) {
+    /**
+     * This method iterates through an array and prints them in readable manner.
+     *
+     * @param  marks the marks array.
+    */
+    private static void printAllMarks(double[] marks) {
+        for (int i = 0; i < marks.length; i++) {
+            System.out.printf("%.2f", marks[i]);
+            if (i < marks.length - 1) {
                 System.out.print("\n");
             }
         }
     }
     
-        private static double findHighestMark(double[] marks) {
+    /**
+     * This method iterates through an array of marks and finds the highest mark.
+     *
+     * @param  marks the marks array.
+     * @return the highest mark from the array.
+    */
+    private static double findHighestMark(double[] marks) {
         double highestMark = marks[0]; // assign a default value to highestMark
         for (int i = 1; i < marks.length; i++) {
             // check if the value in the marks array is higher than the default value in the highestMark variable.
@@ -164,7 +106,13 @@ public class StudentsMarksStats
         return highestMark;
     }
     
-       private static double findLowestMark(double[] marks) {
+    /**
+     * This method iterates through an array of marks and finds the lowest mark.
+     *
+     * @param  marks the marks array.
+     * @return the lowest mark from the array.
+    */
+    private static double findLowestMark(double[] marks) {
         double lowestMark = marks[0]; // assign a default value to lowestMark
         // iterate through the marks array
         for (int i = 1; i < marks.length; i++) {
@@ -174,6 +122,34 @@ public class StudentsMarksStats
             }
         }
         return lowestMark;
+    }
+    
+    
+    /**
+     * This method iterates through an array of marks and finds the lowest mark.
+     *
+     * @param  marks the marks array.
+     * @return [mean,stdDev] the calucalted mean and standard deviation.
+    */
+    private static double[] calculateMeanStdDev(double[] marks) {
+        double sum = 0; // asign default value of 0 to the sum variable.
+        for (double mark : marks) {
+            sum += mark; // add the value of each mark to the sum variable.
+        }
+        
+        // calculate the mean
+        double mean = sum / marks.length; 
+
+        double squaredDiffSum = 0; // assign the default value of 0.
+        
+        for (double mark : marks) {
+            double diff = mark - mean; // calculate the difference from each mark
+            squaredDiffSum += diff * diff; // calculate squared sum of the each difference.
+        }
+        double variance = squaredDiffSum / marks.length; // calculate variance
+        double stdDev = Math.sqrt(variance); // use the java library function to calculate standard deviation.
+
+        return new double[]{mean, stdDev}; // return mean, stdDev as array
     }
     
 
