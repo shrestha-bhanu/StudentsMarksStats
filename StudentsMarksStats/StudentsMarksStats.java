@@ -40,6 +40,11 @@ public class StudentsMarksStats
         System.out.println("\nAssignment: " + assignmentName + "\n");
         System.out.print("Marks of all 30 students : \n");
         printAllMarks(marks);
+        
+        // Pass the marks array to respective methods to get highest & lowest mark.
+        System.out.printf("\n\nHighest mark: %.2f%n", findHighestMark(marks));
+        System.out.printf("\nLowest mark: %.2f%n", findLowestMark(marks));
+
 
         
         /*
@@ -129,7 +134,7 @@ public class StudentsMarksStats
                 if (mark >= 0 && mark <= 30) {
                     return mark;
                 } else {
-                    System.out.println("Error: You entered an invalid mark. Mark must be between 0 and 30. Please try again.");
+                    System.out.println("Error: You entered an invalid mark. Mark must be between 0 - 30. Please try again.");
                 }
             // when invalid input is given, show error.
             } catch (NumberFormatException e) {
@@ -145,6 +150,30 @@ public class StudentsMarksStats
                 System.out.print("\n");
             }
         }
+    }
+    
+        private static double findHighestMark(double[] marks) {
+        double highestMark = marks[0]; // assign a default value to highestMark
+        for (int i = 1; i < marks.length; i++) {
+            // check if the value in the marks array is higher than the default value in the highestMark variable.
+            if (marks[i] > highestMark) {
+                highestMark = marks[i]; // if true, replace the value in the highestMark var with the marks array value.
+            }
+       
+        }
+        return highestMark;
+    }
+    
+       private static double findLowestMark(double[] marks) {
+        double lowestMark = marks[0]; // assign a default value to lowestMark
+        // iterate through the marks array
+        for (int i = 1; i < marks.length; i++) {
+            // check if the value in the marks array is lower than the default value in the lowestMark var.
+            if (marks[i] < lowestMark) {
+                lowestMark = marks[i]; // if true, replace the value in the lowestMark var with the marks array value.
+            }
+        }
+        return lowestMark;
     }
     
 
