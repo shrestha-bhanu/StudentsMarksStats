@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class StudentsMarksStats
 {
     // defining total number of students
-    private static int num_students = 30;
+    private static int num_students = 3;
 
     /**
      * The main method of the class, this method gets input from the user for 30 students' marks and calucates -
@@ -43,7 +43,7 @@ public class StudentsMarksStats
         
         // Pass the marks array to respective methods to get highest & lowest mark.
         System.out.printf("\n\nHighest mark: %.2f%n", findHighestMark(marks));
-        System.out.printf("\nLowest mark: %.2f%n", findLowestMark(marks));
+        System.out.printf("Lowest mark: %.2f%n", findLowestMark(marks));
 
         // Pass the marks array to the method to calculate mean, & standard deviation and store them in an array.
         double[] meanStdDev = calculateMeanStdDev(marks);
@@ -81,7 +81,7 @@ public class StudentsMarksStats
     */
     private static void printAllMarks(double[] marks) {
         for (int i = 0; i < marks.length; i++) {
-            System.out.printf("%.2f", marks[i]);
+            System.out.printf("Student %d : %.2f", i+1, marks[i]);
             if (i < marks.length - 1) {
                 System.out.print("\n");
             }
